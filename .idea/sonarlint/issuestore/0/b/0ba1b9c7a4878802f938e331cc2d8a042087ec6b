@@ -1,0 +1,23 @@
+
+9
+java:S1643M"Use a StringBuilder instead.(Öðæ’8ùÍÿž»1
+9
+java:S1643P"Use a StringBuilder instead.(”¤Ê½8ùÍÿž»1
+:
+java:S1643Ç"Use a StringBuilder instead.(ž³ŸŽ8ùÍÿž»1
+a
+java:S2259C"?A "NullPointerException" could be thrown; "r" is nullable here.(Ò¶“¡ýÿÿÿÿ8±Îÿž»1
+a
+java:S2259C"?A "NullPointerException" could be thrown; "l" is nullable here.(Ò¶“¡ýÿÿÿÿ8±Îÿž»1
+m
+java:S36556"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ˆè€˜8±Îÿž»1
+o
+java:S1602`"SRemove useless curly braces around statement and then remove useless return keyword(ãÐÛ)8ÄÎÿž»1
+e
+java:S5361i"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Ïƒ©ª8ÆÎÿž»1
+H	java:S106™"+Replace this use of System.out by a logger.(Žßý–8ÊÎÿž»1
+H	java:S106œ"+Replace this use of System.out by a logger.(È‘³þ8ÊÎÿž»1
+g
+java:S1612§"DReplace this lambda with method reference 'Integer::toBinaryString'.(üÏ¾²øÿÿÿÿ8ÌÎÿž»1
+M	java:S106ª"+Replace this use of System.out by a logger.(²½Éˆúÿÿÿÿ8ÌÎÿž»1
+H	java:S106­"+Replace this use of System.out by a logger.(È‘³þ8ÍÎÿž»1
