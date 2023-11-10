@@ -9,7 +9,7 @@ public class Main {
 
     }
 
-    public static final String WORD = "test123 test123 12";
+    public static final String WORD = "Let's try crack1";
 
     public static final String PLACEHOLDER = "_";
     public static final String MSG_ALGOS = """
@@ -21,10 +21,8 @@ public class Main {
 
     public static final String MSG_MEASURE = """
             The coef of compression is:\s
-                - encoded:  %s,
-                - with size:    %s
-                - string:   %s,
-                - with size:    %s
+                - encoded with size:    %s
+                - initial with size:    %s
                 - coef: %s
             """;
     public static final String ESCAPE_SYMBOL = "!";
@@ -148,33 +146,29 @@ public class Main {
     public static void testHaffMethod() {
         var tree = buildTree(new ArrayList<>(buildAlphabet(WORD)));
         var encoded = encodeString(tree, WORD);
-        var coef = encoded.split("_").length / (double) convertToBinary(WORD).split("_").length * 100.0;
+        var bytesEncoded = Math.ceil(encoded.replace("_", "").length() / 8.0);
+        var coef = bytesEncoded / (double) WORD.getBytes().length * 100.0;
 
         System.out.println(String.format(MSG_ALGOS, "HAFF", WORD,
-                encoded.replace("_", " "),
+                encoded.replace("_", ""),
                 decodeString(createCoversationMap(tree, WORD), encoded)));
         System.out.println(String.format(MSG_MEASURE,
-                encoded.replace("_", " "),
-                encoded.length(),
-                convertToBinary(WORD).replace("_", " "),
-                convertToBinary(WORD).length(),
+                bytesEncoded,
+                WORD.getBytes().length,
                 coef));
     }
 
     public static void testArifMethod() {
         Map<String, Segment> proportionsMap = getProportionsMap(buildAlphabet(WORD + ESCAPE_SYMBOL), WORD + ESCAPE_SYMBOL);
         var encoded = arithmeticMethod(WORD + ESCAPE_SYMBOL, proportionsMap);
-        var encodedBinary = Arrays.stream(encoded.chars().toArray()).mapToObj(e -> Integer.toBinaryString(e)).collect(Collectors.joining("_"));
-        var coef = encodedBinary.split("_").length / (double) convertToBinary(WORD).split("_").length * 100.0;
+        var coef = encoded.split("_").length * 4 / (double) WORD.getBytes().length * 100.0;
 
         System.out.println(String.format(MSG_ALGOS, "ARIF", WORD,
                 encoded,
                 decodeArithmetic(encoded, proportionsMap)));
         System.out.println(String.format(MSG_MEASURE,
-                encodedBinary.replace("_", " "),
-                encodedBinary.replace("_", " ").length(),
-                convertToBinary(WORD).replace("_", " "),
-                convertToBinary(WORD).length(),
+                encoded.split("_").length * 4,
+                WORD.getBytes().length,
                 coef));
     }
 
@@ -231,20 +225,6 @@ public class Main {
         }
 
         return "";
-    }
-
-    public static String convertToBinary(String input) {
-        StringBuilder binary = new StringBuilder();
-        for (int i = 0; i < input.toCharArray().length; ++i) {
-            char c = input.charAt(i);
-            binary.append(Integer.toBinaryString(c));
-
-            if (i != input.length() - 1) {
-                binary.append("_");
-            }
-
-        }
-        return binary.toString();
     }
 
     public static void main(String[] args) {
